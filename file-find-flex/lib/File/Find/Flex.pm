@@ -410,75 +410,20 @@ matched.
 sub BUILD {
     my $self = shift;
     
-    #like
-    if($self->has_like()) {
-        $self->like($self->like());
-    }
-    
-    #unlike
-    if($self->has_unlike()) {
-        $self->unlike($self->unlike());
-    }
-    
-    #dirs
-    if($self->has_dirs()) {
-        $self->dirs($self->dirs());
-    }
-    
-    #exts
-    if($self->has_ext()) {
-        $self->ext($self->ext());
-    }
-    
-    #subs
-    if($self->has_subs()) {
-        $self->subs($self->subs());
-    }
-    
-    #size
-    if($self->has_size()) {
-        $self->size($self->size());
-    }
-    
-    #changed
-    if($self->has_changed()) {
-        $self->changed($self->changed());
-    }
-    
-    #modified
-    if($self->has_modified()) {
-        $self->modified($self->modified());
-    }
-    
-    #accessed
-    if($self->has_accessed()) {
-        $self->accessed($self->accessed());
-    }
-    
-    #is
-    if($self->has_is()) {
-        $self->is($self->is());
-    }
-    
-    #isnt
-    if($self->has_isnt()) {
-        $self->isnt($self->isnt());
-    }
-        
-    #owner
-    if($self->has_owner()) {
-        $self->owner($self->owner());
-    }
-    
-    #group
-    if($self->has_group()) {
-        $self->group($self->group());
-    }
-    
-    #perms
-    if($self->has_perms()) {
-        $self->perms($self->perms());
-    }
+    $self->like($self->like()) if $self->has_like(); #like
+    $self->unlike($self->unlike()) if $self->has_unlike(); #unlike
+    $self->dirs($self->dirs()) if $self->has_dirs(); #dirs
+    $self->ext($self->ext()) if $self->has_ext(); #ext
+    $self->subs($self->subs()) if $self->has_subs(); #subs
+    $self->size($self->size()) if $self->has_size(); #size
+    $self->changed($self->changed()) if $self->has_changed(); #changed
+    $self->modified($self->modified()) if($self->has_modified()); #modified
+    $self->accessed($self->accessed()) if $self->has_accessed(); #accessed
+    $self->is($self->is()) if $self->has_is(); #is
+    $self->isnt($self->isnt()) if $self->has_isnt(); #isnt
+    $self->owner($self->owner()) if $self->has_owner(); #owner
+    $self->group($self->group()) if $self->has_group(); #group
+    $self->perms($self->perms()) if $self->has_perms(); #perms
 }
 
 =head2 dirs
