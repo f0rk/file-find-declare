@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use File::Find::Flex;
-use Test::More tests => 9;
+use Test::More tests => 11;
 use Test::Exception;
 
 #make a new directory, and put some files in it

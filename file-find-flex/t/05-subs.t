@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use File::Find::Flex;
-use Test::More tests => 9;
+use Test::More tests => 6;
 use Test::Exception;
 
 #make a new directory, and put some files in it
@@ -30,16 +30,13 @@ is($files[1], './temp/foo.pl', 'files has 1st elem foo.pl');
 is($files[2], './temp/foo.txt', 'files has 2nd elem foo.txt');
 
 $sp = {
-    subs => [sub { $_[0] =~ m/foo/ }, sub { $_[0] =~ m/baz/ }],
+    subs => [sub { $_[0] =~ m/foo/ }, sub { $_[0] =~ m/txt/ }],
     dirs => './temp',
 };
 $fff = File::Find::Flex->new($sp);
 @files = sort $fff->find();
-is($#files, 3, 'files has 4 elems');
-is($files[0], './temp/baz.txt', 'files has 0th elem baz.txt');
-is($files[1], './temp/foo', 'files has 1st elem foo');
-is($files[2], './temp/foo.pl', 'files has 2nd elem foo.pl');
-is($files[3], './temp/foo.txt', 'files has 3rd elem foo.txt');
+is($#files, 0, 'files has 1 elem');
+is($files[0], './temp/foo.txt', 'files has 0th elem baz.txt');
 
 #delete temp directory
 unlink('./temp/foo');

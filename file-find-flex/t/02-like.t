@@ -41,14 +41,14 @@ is($files[1], './temp/foo.pl', 'files has 1st elem foo.pl');
 is($files[2], './temp/foo.txt', 'files has 2nd elem foo.txt');
 
 $sp = {
-    like => [qr/foo\.p.*/, 'bar.txt'],
+    like => [qr/pl$|txt$/, qr/bar/],
     dirs => './temp',
 };
 $fff = File::Find::Flex->new($sp);
 @files = sort $fff->find();
 is($#files, 1, 'files contains 2 elems');
-is($files[0], './temp/bar.txt', 'files has 0th elem bar.txt');
-is($files[1], './temp/foo.pl', 'files has 1st elem foo.pl');
+is($files[0], './temp/bar.pl', 'files has 0th elem bar.pl');
+is($files[1], './temp/bar.txt', 'files has 1st elem bar.txt');
 
 #delete temp directory
 unlink('./temp/foo');
