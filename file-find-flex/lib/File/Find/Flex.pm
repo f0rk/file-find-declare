@@ -2,6 +2,8 @@ package File::Find::Flex;
 
 # ABSTRACT: Flexible file finding.
 
+use strict; #shut up cpants
+use warnings; #shut up cpants
 use Moose;
 use Moose::Util::TypeConstraints;
 use Moose::Meta::TypeConstraint;
