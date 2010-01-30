@@ -128,6 +128,8 @@ has 'recurse' => (
     is => 'rw',
     isa => 'Int',
     default => 0,
+    reader => '_get_recurse',
+    writer => '_set_recurse',
 );
 
 #filetest directives the file should be like
@@ -715,6 +717,26 @@ sub perms {
     } else {
         return $self->_set_perms($perms);
     }
+}
+
+=head2 recurse
+
+The method C<recurse> allows you to set the recursion property after the
+object has been created. It expects a single number, 0 false, any other for true.
+If called with no arguments, it will return whatever recurse is currently set
+to. See also L<Specifying recurse>.
+
+=cut
+
+sub recurse {
+    my $self = shift;
+    my $recurse = shift;
+    
+    if(!defined($recurse)) {
+        return $self->_get_recurse();
+    }
+    
+    return $self->_set_recurse($recurse);
 }
 
 =head2 like
