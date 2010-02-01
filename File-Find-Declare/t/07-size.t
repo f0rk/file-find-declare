@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use File::Find::Flex;
+use File::Find::Declare;
 use Test::More tests => 11;
 use Test::Exception;
 
@@ -27,7 +27,7 @@ $sp = {
     size => '0',
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 0, 'files has 1 elem');
 is($files[0], './temp/foo', 'files has 0th elem foo');
@@ -36,7 +36,7 @@ $sp = {
     size => '1024',
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 0, 'files has 1 elem');
 is($files[0], './temp/foo.txt', 'files has 0th elem foo.txt');
@@ -45,7 +45,7 @@ $sp = {
     size => '>2048',
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 1, 'files has 2 elems');
 is($files[0], './temp/bar.txt', 'files has 0th elem bar.txt');
@@ -55,7 +55,7 @@ $sp = {
     size => ['1024', '2048'],
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, -1, 'files has 0 elems');
 
@@ -63,7 +63,7 @@ $sp = {
     size => ['>=1024', '<=2048'],
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 1, 'files has 2 elems');
 is($files[0], './temp/bar.pl', 'files has 0th elem bar.pl');

@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use File::Find::Flex;
+use File::Find::Declare;
 use Test::More tests => 4;
 use Test::Exception;
 
@@ -15,20 +15,20 @@ my $fff;
 my @files;
 
 $sp = {
-    accessed => '<='.time,
+    changed => '<='.time,
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 1, 'files has 2 elems');
 is($files[0], './temp/foo', 'files has 0th elem foo');
 is($files[1], './temp/foo.pl', 'files has 1st elem foo.pl');
 
 $sp = {
-    accessed => '>'.time,
+    changed => '>'.time,
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, -1, 'files has 0 elems');
 

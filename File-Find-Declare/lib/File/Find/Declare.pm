@@ -1,6 +1,6 @@
-package File::Find::Flex;
+package File::Find::Declare;
 
-# ABSTRACT: Flexible file finding.
+# ABSTRACT: File::Find, declaratively
 
 use strict; #shut up cpants
 use warnings; #shut up cpants
@@ -187,31 +187,31 @@ has 'files' => (
 
 =head1 SYNOPSIS
 
-  use File::Find::Flex;
+  use File::Find::Declare;
   
-  my $fff = File::Find::Flex->new({ like => qr/foo/, dirs => '/home' });
+  my $fff = File::Find::Declare->new({ like => qr/foo/, dirs => '/home' });
   my @files = $fff->find();
 
 =head1 DESCRIPTION
 
-File::Find::Flex is an object-oriented way to go about find files. With
-many ways to specify what your are looking for in a file, File::Find::Flex
+File::Find::Declare is an object-oriented way to go about find files. With
+many ways to specify what your are looking for in a file, File::Find::Declare
 is both simple and powerful. Configuration may be passed at construction
 time, or it may be set after a new object is created, or set at construction
 time and then altered later, should you wish to set defaults and then change
 them.
 
-File::Find::Flex is an alternative to L<File::Find> and L<File::Find::Rule>. It is
+File::Find::Declare is an alternative to L<File::Find> and L<File::Find::Rule>. It is
 meant to be much simpler than File::Find and behaves differently then 
 File::Find::Rule.
 
-=head1 Getting Started with File::Find::Flex
+=head1 Getting Started with File::Find::Declare
 
-File::Find::Flex supports several ways of setting up your search options, and
-many more ways of specifying file attributes to search for. To use File::Find::Flex,
+File::Find::Declare supports several ways of setting up your search options, and
+many more ways of specifying file attributes to search for. To use File::Find::Declare,
 simply,
 
-  use File::Find::Flex;
+  use File::Find::Declare;
 
 No methods are exported. This module is meant to be used solely in an
 object-oriented manner. You can then specify what you want to search for:
@@ -219,14 +219,14 @@ object-oriented manner. You can then specify what you want to search for:
   my $sp = { like => qr/foo/, unlike => qr/bar/, dirs => [ '/home', '/etc' ] };
 
 This will search for files whose names contain I<foo>, don't contain I<bar>, and
-which are located in either I</home> or I</etc>. Create a File::Find::Flex object,
+which are located in either I</home> or I</etc>. Create a File::Find::Declare object,
 like so:
 
-  my $fff = File::Find::Flex->new($sp);
+  my $fff = File::Find::Declare->new($sp);
 
 Although you could have (of course) simply done this:
 
-  my $fff = File::Find::Flex->new({
+  my $fff = File::Find::Declare->new({
       like => qr/foo/,
       unlike => qr/bar/,
       dirs => [ '/home', '/etc' ]
@@ -239,14 +239,14 @@ call C<find()>:
 
 And that's it. To recap:
 
-  use File::Find::Flex;
+  use File::Find::Declare;
   my $sp = { like => qr/foo/, unlike => qr/bar/, dirs => [ '/home', '/etc' ] };
-  my $fff = File::Find::Flex->new($sp);
+  my $fff = File::Find::Declare->new($sp);
   my @files = $fff->find();
 
 =head1 Search Options
 
-File::Find::Flex has many possible search options. What follows is a listing of all
+File::Find::Declare has many possible search options. What follows is a listing of all
 those options, followed by a discussion of them.
 
   my $sp = {
@@ -722,7 +722,7 @@ sub perms {
 =head2 recurse
 
 The method C<recurse> allows you to set the recursion property after the
-object has been created. It expects a single number, 0 false, any other for true.
+object has been created. It expects a single number, 0 for false, any other for true.
 If called with no arguments, it will return whatever recurse is currently set
 to. See also L<Specifying recurse>.
 

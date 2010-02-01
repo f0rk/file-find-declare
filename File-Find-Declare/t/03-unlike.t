@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use File::Find::Flex;
+use File::Find::Declare;
 use Test::More tests => 10;
 use Test::Exception;
 
@@ -22,7 +22,7 @@ $sp = {
     unlike => './temp/foo*',
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 2, 'files contains 3 elems');
 is($files[0], './temp/bar.pl', 'files has 0th elem bar.pl');
@@ -33,7 +33,7 @@ $sp = {
     unlike => qr/foo.*/,
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 2, 'files contains 3 elems');
 is($files[0], './temp/bar.pl', 'files has 0th elem bar.pl');
@@ -44,7 +44,7 @@ $sp = {
     unlike => [qr/foo.*/, './temp/bar*'],
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 0, 'files contains 1 elem');
 is($files[0], './temp/baz.txt', 'files has 0th elem baz.txt');

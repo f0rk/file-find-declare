@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use File::Find::Flex;
+use File::Find::Declare;
 use Test::More tests => 6;
 use Test::Exception;
 
@@ -22,7 +22,7 @@ $sp = {
     subs => sub { $_[0] =~ m/foo/ },
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 2, 'files has 3 elems');
 is($files[0], './temp/foo', 'files has 0th elem foo');
@@ -33,7 +33,7 @@ $sp = {
     subs => [sub { $_[0] =~ m/foo/ }, sub { $_[0] =~ m/txt/ }],
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 0, 'files has 1 elem');
 is($files[0], './temp/foo.txt', 'files has 0th elem baz.txt');

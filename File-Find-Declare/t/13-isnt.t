@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use File::Find::Flex;
+use File::Find::Declare;
 use Test::More tests => 22;
 use Test::Exception;
 
@@ -28,7 +28,7 @@ $sp = {
     isnt => 'directory',
     dirs => './temp'
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 5, 'files has 6 elems');
 is($files[0], './temp/bar.pl', 'files has 0th elem bar.pl');
@@ -42,7 +42,7 @@ $sp = {
     isnt => 'readable',
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 2, 'files has 3 elems');
 is($files[0], './temp/bar.pl', 'files has 0th elem bar.pl');
@@ -53,7 +53,7 @@ $sp = {
     isnt => 'writable',
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 2, 'files has 3 elems');
 is($files[0], './temp/bar.txt', 'files has 0th elem bar.txt');
@@ -64,7 +64,7 @@ $sp = {
     isnt => 'executable',
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 2, 'files has 3 elems');
 is($files[0], './temp/bar.pl', 'files has 10th elem bar.pl');
@@ -75,7 +75,7 @@ $sp = {
     isnt => ['readable', 'writable', 'executable'],
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 0, 'files has 1 elems');
 is($files[0], './temp/foo', 'files has 0th elem foo');
@@ -84,7 +84,7 @@ $sp = {
     isnt => ['readable', 'writable', 'executable', 'file'],
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, -1, 'files has 0 elems');
 

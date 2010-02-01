@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use File::Find::Flex;
+use File::Find::Declare;
 use Test::More tests => 9;
 use Test::Exception;
 
@@ -22,7 +22,7 @@ $sp = {
     ext => '.pl',
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 1, 'files contains 2 elems');
 is($files[0], './temp/bar.pl', 'files has 0th elem bar.pl');
@@ -32,7 +32,7 @@ $sp = {
     ext => ['.pl', '.txt'],
     dirs => './temp',
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 4, 'files contains 5 elems');
 is($files[0], , './temp/bar.pl', 'files has 0th elem bar.pl');

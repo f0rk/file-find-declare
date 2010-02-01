@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use File::Find::Flex;
+use File::Find::Declare;
 use Test::More tests => 8;
 use Test::Exception;
 
@@ -23,7 +23,7 @@ $sp = {
     recurse => 1,
     dirs => './temp'
 };
-$fff = File::Find::Flex->new($sp);
+$fff = File::Find::Declare->new($sp);
 @files = sort $fff->find();
 is($#files, 6, 'files has 7 elems');
 is($files[0], './temp/foo', 'files has 0th elem foo');
