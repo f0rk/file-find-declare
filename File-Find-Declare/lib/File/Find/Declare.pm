@@ -1197,7 +1197,7 @@ sub _perm_string_to_octal {
 
 The source code repository for this project is located at:
 
-  http://github.com/f0rk/file-find-flex
+  http://github.com/f0rk/file-find-declare
 
 =cut
 
